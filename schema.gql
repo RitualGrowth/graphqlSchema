@@ -97,9 +97,7 @@ enum StageType {
 
 type projectFlowStageStats {
     projectID: String!
-    startDate: String!
-    endDate: String!
-    duration: String!
+    DurationInfo
     numberOfCohorts: Int!
     status: Status
     flowsRun: [FlowRun]
