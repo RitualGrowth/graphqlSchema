@@ -105,20 +105,6 @@ type projectFlowStageStats {
     flowsRun: [FlowRun]
 }
 
-type secondProjectFlowStageStats {
-    projectID: String!
-    cohortID: String!
-    stageID: String!
-    durationInfo: DurationInfo
-    statisticsInfo: StatisticsInfo
-    signup: String
-    d7: String
-    d30:String
-    engagement: String
-    viralReferrals: String
-    monetization: String
-}
-
 type FlowRun {
     flowType: FlowType
     flowVersion: Int
