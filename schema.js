@@ -2,6 +2,25 @@ export const typeDefs = `#graphql
 
 scalar Date
 
+type ProjectSummary {
+	projectID: ID!
+	durationInfo: DurationInfo
+	cohortsSummary: [CohortSummary]
+}
+
+type CohortSummary {
+	cohortID: ID!
+	durationInfo: DurationInfo
+	numberOfUsers: Int!
+	stagesSummary: [StageSummary]
+}
+
+type StageSummary {
+	stageID: ID!
+	durationInfo: DurationInfo
+	statisticsInfo: StatisticsInfo
+}
+
 type ProjectFlowStageStats {
     projectID: ID!
     durationInfo: DurationInfo
@@ -149,6 +168,17 @@ type ComponentInfo {
     nextView: View
 }
 
+type CohortFlowSummary {
+	softwareRelease: String!
+	cohortID: ID!
+	durationInfo: DurationInfo
+	numberOfUsers: Int!
+	status: Status
+	graphs: [Graph]
+	dashboard: [Dashboard]
+	ghStageStatus: 
+}
+
 #Entrypoints (query type)
 type Query {
     getProjectFlowStageStats(projectID: ID!): ProjectFlowStageStats
@@ -254,4 +284,4 @@ enum StageType {
     ENGAGEMENT
     MONETIZATION
 }
-`
+`;
