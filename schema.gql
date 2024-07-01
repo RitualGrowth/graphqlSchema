@@ -1,7 +1,26 @@
 scalar Date
 
+type ProjectSummary {
+	projectID: ID!
+	durationInfo: DurationInfo
+	cohortsSummary: [CohortSummary]
+}
+
+type CohortSummary {
+	cohortID: ID!
+	durationInfo: DurationInfo
+	numberOfUsers: Int!
+	stagesSummary: [StageSummary]
+}
+
+type StageSummary {
+	stageID: ID!
+	durationInfo: DurationInfo
+	statisticsInfo: StatisticsInfo
+}
+
 type ProjectFlowStageStats {
-	projectID: String!
+	projectID: ID!
 	durationInfo: DurationInfo
 	numberOfCohorts: Int!
 	status: Status
@@ -10,9 +29,9 @@ type ProjectFlowStageStats {
 
 type CohortFlowStats {
 	flowType: FlowType
-	projectID: String!
-	cohortID: String!
-	stageID: String!
+	projectID: ID!
+	cohortID: ID!
+	stageID: ID!
 	durationInfo: DUrationInfo
 	statisticsInfo: StatisticsInfo
 	stageInfos: [StageInfo]
@@ -69,7 +88,7 @@ type VisitsInfo {
 # ComponentInfo tracks the user interaction with a component in a view
 type ComponentInfo {
 	view: View
-	componentID: String! # this is the ID assigned to the component by the app
+	componentID: ID! # this is the ID assigned to the component by the app
 	duration: DateTimeInfo
 	componentType: ComponentType
 	action: String # What did the user do? E.g. pressed a button, selected a particular radio button, pressed a link
@@ -78,26 +97,25 @@ type ComponentInfo {
 }
 
 type ProjectInfo {
-	projectID: String!
+	projectID: ID!
 }
 
 type CohortInfo {
 	projectInfo: ProjectInfo
-	cohortID: String!
+	cohortID: ID!
 	numberOfUsers: Int
 }
 
 type StageInfo {
 	projectInfo: ProjectInfo
 	cohortInfo: CohortInfo
-	stageInfo: StageInfo
-	stageID: String!
+	stageID: ID!
 }
 
 type UserInfo {
-	userID: String!
+	userID: ID!
 	cohortID: Int!
-	projectID: String!
+	projectID: ID!
 	currentStage: StageInfo # In JSON schema used StageName but the type is not defined
 	timeSpentInProject: Int!
 }
@@ -262,7 +280,7 @@ enum StageType {
 }
 
 type projectFlowStageStats {
-    projectID: String!
+    projectID: ID!
     startDate: String!
     endDate: String!
     duration: String!
@@ -334,6 +352,17 @@ type cohortFlowStats {
     stageInfos: [StageInfo]
 }
 
+type CohortFlowSummary {
+	softwareRelease: String!
+	cohortID: ID!
+	durationInfo: DurationInfo
+	numberOfUsers: Int!
+	status: Status
+	graphs: [Graph]
+	dashboard: [Dashboard]
+	ghStageStatus: 
+}
+
 type StageInfo {
     projectInfo: ProjectInfo
     cohortInfo: CohortInfo
@@ -395,7 +424,7 @@ type TargetInfoPercentage {
 }
 
 type ProjectInfo{
-    projectID: String!
+    projectID: ID!
 }
 
 type secondCohortStageStats {
@@ -443,7 +472,7 @@ type VisitsInfo {
 
 type ComponentInfo {
     view: View
-    componentID:String # this is the ID assigned to the component by the app
+    componentID:ID # this is the ID assigned to the component by the app
     duration: DateTimeInfo
     componentType: ComponentType
     action: String # What did the user do? E.g. pressed a button, selected a particular radio button, pressed a link
